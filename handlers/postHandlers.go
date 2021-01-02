@@ -2,14 +2,14 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"strings"
 )
 
 func CreateItem(w http.ResponseWriter, r *http.Request) {
-	var item Item
-	err := json.NewDecoder(r.Body).Decode(&item)
+	item := new(Item)
+	err := json.NewDecoder(r.Body).Decode(item)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		j, _ := json.Marshal(`{"Bad json"}`)
@@ -23,6 +23,8 @@ func CreateItem(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	j, _ := json.Marshal(res)
-	fmt.Printf("%v: [Collection: %s, Title: %s, Details: %s, Assignee: %s]\n", res, item.Collection, item.Title, item.Details, item.Assignee)
+	log.Printf(
+		"%v: [Collection: %s, Title: %s, Details: %s, Assignee: %s]\n", res, item.Collection, item.Title, item.Details, item.Assignee,
+	)
 	w.Write(j)
 }
