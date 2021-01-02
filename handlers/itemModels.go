@@ -9,6 +9,9 @@ type Item struct {
 	Assignee   string `json:"assignee,omitempty"`
 }
 
+// primitive.ObjectID is the type for
+// the auto generated mongo ids
+
 type ReturnItem struct {
 	Id       primitive.ObjectID `json:"id"`
 	Title    string             `json:"title,omitempty"`
