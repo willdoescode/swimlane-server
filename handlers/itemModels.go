@@ -13,7 +13,7 @@ type Item struct {
 // the auto generated mongo ids
 
 type ReturnItem struct {
-	Id       primitive.ObjectID `json:"id"`
+	Id       primitive.ObjectID `json:"id,_id"`
 	Title    string             `json:"title,omitempty"`
 	Details  string             `json:"details,omitempty"`
 	Assignee string             `json:"assignee,omitempty"`
@@ -22,4 +22,10 @@ type ReturnItem struct {
 type ManyItems struct {
 	Collection string       `json:"collection,omitempty"`
 	Items      []ReturnItem `json:"items,omitempty"`
+}
+
+type MoveItem struct {
+	PrevCollection string             `json:"prevcollection,omitempty"`
+	NewCollections string             `json:"newcollection,omitempty"`
+	Id             primitive.ObjectID `json:"id,omitempty"`
 }

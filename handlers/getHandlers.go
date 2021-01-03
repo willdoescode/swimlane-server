@@ -12,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func GetManyItems(w http.ResponseWriter, r *http.Request) {
+func GetManyItemsHandler(w http.ResponseWriter, r *http.Request) {
 	var items []ReturnItem
 	context, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()

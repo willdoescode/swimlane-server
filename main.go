@@ -11,7 +11,8 @@ import (
 
 func main() {
 	router := mux.NewRouter()
-	router.HandleFunc("/create", h.CreateItem).Methods("POST")
-	router.HandleFunc("/{id}", h.GetManyItems).Methods("GET")
+	router.HandleFunc("/create", h.CreateItemHandler).Methods("POST")
+	router.HandleFunc("/move", h.MoveItemHandler).Methods("POST")
+	router.HandleFunc("/{id}", h.GetManyItemsHandler).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", cors.Default().Handler(router)))
 }
